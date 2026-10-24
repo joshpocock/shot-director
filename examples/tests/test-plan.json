@@ -1,0 +1,10 @@
+{
+  "title": "grade.py test: a synthetic desk scene with a terracotta speaker (every pixel drawn by a script)",
+  "duration_s": 15,
+  "keyframes": [
+    {"id": 1, "role": "setup", "time_s": 0, "must_be_true": ["closed box on the desk, lid on"]},
+    {"id": 2, "role": "discovery", "time_s": 6, "must_be_true": ["lid off, speaker standing on the desk, light bar off"]},
+    {"id": 3, "role": "use", "time_s": 10, "must_be_true": ["speaker on the desk, light bar on, camera still wide"]},
+    {"id": 4, "role": "hero", "time_s": 15, "must_be_true": ["camera pushed in on the speaker, light bar on"]}
+  ]
+}

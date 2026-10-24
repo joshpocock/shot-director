@@ -1,0 +1,109 @@
+{
+  "schema": "shot-director/plan@1",
+  "title": "Terracotta desk speaker: unbox to hero, one take",
+  "brief": "30-second ad for a small matte terracotta desk speaker, unboxed on a desk, ending on a hero shot.",
+  "duration_s": 30,
+  "aspect": "16:9",
+  "quality": {"test": "720p", "final": "1080p"},
+  "subject": {
+    "name": "desk speaker",
+    "spec": "A small matte terracotta desk speaker shaped like a squat rounded block, about the size of a coffee mug, smooth surface with no visible seams, one thin white light bar across the lower front face. No text, no logo, no buttons, no fabric, no grille.",
+    "rules": ["no text or logos on the product", "original design only", "same shape, size and colour in every frame"]
+  },
+  "camera": "Locked in the keyframe 1 position from 0 to 17 s, then one slow push-in that lowers to desk height and comes to rest on keyframe 4 at 30 s.",
+  "keyframes": [
+    {
+      "id": 1,
+      "file": "kf1.png",
+      "role": "setup",
+      "time_s": 0,
+      "made_from": "scratch",
+      "must_be_true": [
+        "closed plain kraft box, lid on, slightly left of centre on a walnut desk",
+        "window at the left edge, soft morning light from the left",
+        "empty desk space to the right of the box",
+        "small plant softly out of focus, back right",
+        "camera at chest height, looking slightly down, three-quarter angle",
+        "no hands, no people, no text"
+      ],
+      "image_prompt": "Photorealistic 16:9 photo. A closed plain kraft-paper box with no printing, lid on, sits slightly left of center on a walnut desk. A window at the left edge of the frame lets in soft morning light from the left. Empty desk space to the right of the box. A small green plant softly out of focus in the back right. Camera at chest height, looking slightly down, three-quarter angle. No text, no logos, no people, no hands."
+    },
+    {
+      "id": 2,
+      "file": "kf2.png",
+      "role": "discovery",
+      "time_s": 8,
+      "made_from": "edit of kf1 (second image: the product still)",
+      "changes": ["lid off and flat on the desk left of the box", "speaker visible in white tissue inside the box, light bar off"],
+      "must_be_true": [
+        "same desk, window, light, plant and camera as kf1",
+        "lid lies flat just left of the box",
+        "top half of the speaker visible in white tissue inside the box",
+        "light bar unlit, pale grey",
+        "no hands"
+      ],
+      "image_prompt": "Same photo, same desk, same window and light, same plant, same camera position and framing. The box lid is off and lies flat on the desk just left of the box. Inside the open box, the speaker from the second image sits upright in white tissue paper, top half visible, its light bar unlit and pale grey. Use the second image only for the speaker's shape and color. No hands. Change nothing else."
+    },
+    {
+      "id": 3,
+      "file": "kf3.png",
+      "role": "use",
+      "time_s": 17,
+      "made_from": "edit of kf2",
+      "changes": ["speaker out of the box, standing on the desk right of centre", "light bar on"],
+      "must_be_true": [
+        "same desk, window, light, plant and camera as kf1",
+        "open box, white tissue and lid exactly where they were in kf2",
+        "speaker upright on the desk in front of and right of the box, slightly right of centre, facing camera",
+        "light bar glowing soft white",
+        "no hands"
+      ],
+      "image_prompt": "Same photo, same desk, same window and light, same plant, same camera position and framing. The open box, the white tissue paper inside it and the lid stay exactly where they are. The speaker now stands upright on the desk just in front of and to the right of the box, slightly right of center, facing the camera, its light bar glowing soft white. No hands. Change nothing else."
+    },
+    {
+      "id": 4,
+      "file": "kf4.png",
+      "role": "hero",
+      "time_s": 30,
+      "made_from": "edit of kf3",
+      "changes": ["camera forward and down to desk height", "background falls out of focus"],
+      "must_be_true": [
+        "camera at desk height, about half the distance to the speaker, looking straight at it",
+        "speaker fills the right half of the frame, light bar glowing soft white",
+        "box, lid, plant and window softly out of focus behind it on the left",
+        "same light direction and colour",
+        "no hands"
+      ],
+      "image_prompt": "Same scene, same moment, same light direction and color. The camera has moved forward and down to desk height, about half the distance to the speaker, looking straight at it. The speaker fills the right half of the frame, its light bar glowing soft white. The box, the lid, the plant and the window are softly out of focus behind it on the left. No hands. Change nothing else."
+    }
+  ],
+  "product_still_prompt": "Product photo on a plain light grey background, soft studio light. A small matte terracotta desk speaker shaped like a squat rounded block, about the size of a coffee mug, smooth surface with no visible seams, one thin white light bar across the lower front face. No text, no logo, no buttons, no fabric, no grille.",
+  "frames_prompt": "One continuous shot for the full 30 seconds. No cuts, no angle changes, no scene changes.\n@image_1 is the first frame and @image_4 is the last frame. The camera stays locked in the @image_1 position until 17s, then makes one slow, smooth push-in that lowers to desk height and comes to rest exactly on @image_4 at 30s.\nThe product is a small matte terracotta desk speaker, a squat rounded block with a smooth surface with no visible seams, no buttons, no fabric, one thin white light bar on the front, no text or logo. Its shape, size and color stay exactly the same throughout.\n0-7s: A closed kraft box sits on a walnut desk in soft morning light from the window on the left. Two hands enter from the bottom of the frame, lift the lid straight up, lay it flat beside the box and leave the frame.\n8s: matches @image_2, the speaker sits in white tissue in the open box, its light bar off.\n9-16s: The hands come back, lift the speaker out, stand it on the desk in front of and to the right of the box, and leave the frame.\n16-17s: The light bar fades on. 17s matches @image_3.\n17-30s: The camera slowly pushes in and lowers toward the speaker while the light bar pulses gently. The box, lid and window fall softly out of focus. The camera stops on @image_4.\nSound: paper rustle, a soft chime when the light bar comes on, quiet room tone. No music, no voice, no subtitles.",
+  "edit": {
+    "client_note": "make it matte black",
+    "reference_image": "black-still.png",
+    "reference_image_prompt": "Change only the speaker's body color from matte terracotta to matte black, same matte finish, no new reflections. The light bar stays glowing soft white. Keep the brightness and color of the room exactly the same. Change nothing else.",
+    "prompt": "Edit @video_1. Change only the speaker's body color: everywhere the speaker appears, from the moment it is revealed in the tissue paper to the last frame, it becomes matte black like the speaker in @image_1, same matte finish, same shape, size, position and movement. The light bar stays white and comes on at the same moment.\nKeep unchanged: the kraft box and lid, the white tissue paper, the hands, the walnut desk, the plant, the window light and the overall brightness and color of the room, the camera move and the timing.",
+    "focus_hint": "speaker",
+    "test_slice_s": [17, 27]
+  },
+  "scoring": {
+    "hit_tol_s": 1.0,
+    "late_tol_s": 3.0,
+    "points": {"HIT": 1, "LATE": 0.5, "EARLY": 0.5, "MISS": 0},
+    "no_cuts_point": 1,
+    "out_of": 4
+  },
+  "consistency_checklist": [
+    "All four keyframes are PNG, the same pixel size, 16:9",
+    "Same desk grain, window, plant and light direction in all four",
+    "Box, lid and tissue present and in the same place in kf2, kf3 and kf4",
+    "Light bar off in kf2, on in kf3 and kf4",
+    "Speaker shape, size and colour identical in kf2, kf3 and kf4",
+    "No hands or people in any keyframe",
+    "kf1, kf2 and kf3 share one camera position; only kf4 differs (the planned push-in)",
+    "Empty desk on the right in kf1, speaker right of centre in kf3 so the push-in lands on kf4",
+    "No text, logos or stray objects anywhere",
+    "Prompt beats name the keyframes in upload order: @image_2 at 8s, @image_3 at 17s, @image_4 at 30s"
+  ]
+}
