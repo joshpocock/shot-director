@@ -6,7 +6,7 @@ PLAN mode writes two files in the shot folder:
   to paste, the checklist, the scoring rule.
 - `plan.json`: for `grade.py`. Same content, machine-readable.
 
-A full worked example is in the repository at
+A full worked example is in the skill's examples folder at
 `examples/terracotta-speaker/plan.md` and `plan.json`.
 
 ## plan.md layout

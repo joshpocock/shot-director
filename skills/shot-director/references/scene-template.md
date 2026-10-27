@@ -6,7 +6,7 @@ PLAN-SCENE mode writes two files in the scene folder:
   ready-to-paste Kling 4.0 prompt, the four marks.
 - `scene.json`: for `scene_grade.py`. Same content, machine-readable.
 
-Worked examples are in the repository: `examples/scene-friday/` (micro-drama
+Worked examples are in the skill's `examples/` folder: `examples/scene-friday/` (micro-drama
 Reel), `examples/scene-viking/` (cinematic scene) and `examples/scene-grandpa/`
 (animated story ad in Frames mode, with an Edit video pass).
 

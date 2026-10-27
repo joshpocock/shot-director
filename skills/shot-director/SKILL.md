@@ -80,7 +80,7 @@ my-shot/
 
 Input: one line, for example "30 s vertical micro-drama: she reads one message on his phone and assumes the worst". If something essential is missing, pick a sensible default and say so. Ask at most one question.
 
-Read `references/kling4-higgsfield-rules.md` (the References mode section), `references/scene-formats.md` and `references/reference-sheets.md`, then write `scene.md` and `scene.json` using `references/scene-template.md`. Worked examples in the repository, one per format: `examples/scene-viking/` (cinematic scene), `examples/scene-friday/` (micro-drama Reel), `examples/scene-grandpa/` (animated story ad in Frames, with the Edit video pass).
+Read `references/kling4-higgsfield-rules.md` (the References mode section), `references/scene-formats.md` and `references/reference-sheets.md`, then write `scene.md` and `scene.json` using `references/scene-template.md`. Worked examples in `examples/` next to this file, one per format (read the matching one before you write; it holds the tested prompt): `examples/scene-viking/` (cinematic scene), `examples/scene-friday/` (micro-drama Reel), `examples/scene-grandpa/` (animated story ad in Frames, with the Edit video pass).
 
 0. **Format.** Pick one of the three in `scene-formats.md` and say which. "Which format should I use?": a product that must appear means the animated story ad, or a micro-drama with the product last; reach on Reels and Shorts means the micro-drama; a showcase or a hook means the cinematic scene. Use its beat table as the starting shot list.
 1. **Aspect and duration.** 9:16 for Reels and Shorts, 16:9 for YouTube. Kling 4.0 generates 3 to 30 s in one go; default 30 s.
@@ -162,7 +162,7 @@ python <skill>/scripts/scene_grade.py --fill grade-1 --mark SYNC=HALF --mark SAM
 
 Input: one line, for example "30-second ad for a small matte terracotta desk speaker". If something essential is missing, pick a sensible default and say so. Ask at most one question.
 
-Read `references/look-playbook.md` first: the look is decided in the stills. Then work through these in order and write `plan.md` and `plan.json` using `references/plan-template.md`. The worked example in the repository (`examples/terracotta-speaker/`) shows the finished result.
+Read `references/look-playbook.md` first: the look is decided in the stills. Then work through these in order and write `plan.md` and `plan.json` using `references/plan-template.md`. The worked example in `examples/terracotta-speaker/` next to this file shows the finished result.
 
 1. **Subject spec.** One paragraph: shape, size, colour, finish, and what it does not have ("no text, no logo, no buttons"). This exact wording is reused in every prompt. Products never carry text or logos. Keep the design original; avoid silhouettes that read as a famous product.
 2. **Duration and count.** Default 4 keyframes; recommend 3 to 5 for up to 30 s (the platform allows up to 10). Add a keyframe only where the visual state must change.

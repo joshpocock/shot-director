@@ -238,27 +238,27 @@ the examples are placeholders; log what your Generate button says.
 
 One worked scene per format (`scene.md`, `scene.json`):
 
-- `examples/scene-friday/`: micro-drama Reel. "Friday", 30 s 9:16 in seven
+- `skills/shot-director/examples/scene-friday/`: micro-drama Reel. "Friday", 30 s 9:16 in seven
   shots, two original characters, six lines and a silent ring-box insert,
   with the Kling 4.0 prompt that produced the clip tested below.
-- `examples/scene-viking/`: cinematic scene. "Edge of the Map", 30 s 16:9 in
+- `skills/shot-director/examples/scene-viking/`: cinematic scene. "Edge of the Map", 30 s 16:9 in
   seven shots: a narrator, two Vikings and a giant sea robot, with the three
   reference image prompts.
-- `examples/scene-grandpa/`: animated story ad. "Grandpa's Radio", 30 s 16:9
+- `skills/shot-director/examples/scene-grandpa/`: animated story ad. "Grandpa's Radio", 30 s 16:9
   in Frames mode with a start and an end frame, a made-up speaker brand, and
   the Edit video prompt for the matte black client note (with the fix line
   for the drift the first edit showed).
 
 Single shots and tests:
 
-- `examples/terracotta-speaker/`: a worked plan (`plan.md`, `plan.json`) for a
+- `skills/shot-director/examples/terracotta-speaker/`: a worked plan (`plan.md`, `plan.json`) for a
   fictional product: a small matte terracotta desk speaker shaped like a squat
   rounded block with one thin white light bar on the front, no logo. Client
   note: make it matte black.
 - `examples/tests/`: outputs from the tests below, trimmed to a few small
   images per test, plus the script that draws the test scene
   (`tools/make_synth.py`) so you can rerun everything.
-- `examples/ledger/credits-ledger.csv`: a sample ledger with placeholder numbers.
+- `skills/shot-director/examples/ledger/credits-ledger.csv`: a sample ledger with placeholder numbers.
 
 ### How scene_grade.py was tested
 
