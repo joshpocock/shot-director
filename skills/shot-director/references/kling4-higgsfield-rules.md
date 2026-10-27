@@ -1,6 +1,7 @@
 # Kling 4.0 on Higgsfield: rules a plan must respect
 
-Interface facts were checked on 2026-10-23. Interfaces change. If the screen
+Interface facts were checked on 2026-10-23; References mode dialogue rules
+on 2026-10-27. Interfaces change. If the screen
 disagrees with this file, trust the screen, tell the user, and update this file.
 
 ## Frames mode (keyframes)
@@ -55,6 +56,49 @@ disagrees with this file, trust the screen, tell the user, and update this file.
 - The edit's audio may be regenerated rather than copied.
 - Test an edit on a short slice (about 10 s where the target is on screen the
   whole time) at 720p before paying for the full clip.
+
+## References mode (multi-shot dialogue scenes)
+
+Checked in real generations on 2026-10-27 (two takes of a 30 s two-person
+micro-drama and one 30 s three-speaker movie scene, all References mode).
+
+- **Kling 4.0 generates 3 to 30 s in one go, multi-shot, with dialogue and lip
+  sync.** You write the shot list and the lines; it cuts and voices them.
+- **References and Frames cannot be combined in one task.** A scene with
+  characters uses References (one reference image per character, prop or
+  product). If you need a pinned start or end frame, that is Frames mode and
+  the reference images go.
+- Open the prompt with one sentence per reference image saying its job:
+  "Reference image 1 is the leader: keep his face, beard, scar, helmet and
+  cloak exactly the same in every shot." Upload order sets the number.
+- **Size each shot to its line.** A 3 to 6 word line gets a 3 to 4 s shot.
+  5 to 7 s shots carrying 4 to 8 word lines produced long silent gaps. Long
+  silent shots only for spectacle (the creature rising, the ring box).
+- **One speaker per shot.** A final shot with two people talking made the
+  lines collide: "I ruined it" came out as "I ruined of did". Split it into a
+  shot / reverse shot.
+- **Say the delivery** in the prompt, once for the scene and per line: "every
+  line is delivered in casual, natural English at normal conversational
+  speed with real emotion, no robotic delivery, no long pauses before lines".
+  Without it the delivery read robotic.
+- **Contractions and fillers read human:** "'Cause", "Babe. Babe,", "kinda".
+  Write the line exactly as it should be said.
+- **Put each line at the start of its shot** in the prompt, so the cut does
+  not wait for it. In testing, lines often still started 2 to 4 s into a
+  shot, and one line began over the previous shot before the cut; grade for
+  it.
+- **Hard cuts at stated seconds.** One line listing them ("Seven shots with
+  hard cuts at 4s, 7s, 12s, 16s, 20s and 25s."), then one line per shot
+  starting with its window ("4-7s, shot 2: ..."). Cuts landed within about
+  0.5 s of the stated time on most shots, and up to 1.5 s late on some.
+- Add "No fades." and end with the sound line plus "No music, no subtitles."
+  (drop "no music" when you want a score).
+- Say "Only one person speaks in each shot."
+- Never show text on screen in the scene (a phone screen, a sign): have a
+  character read it aloud instead. AI text garbles.
+- A transcript can drop very short shouted words ("Row!") and swallow small
+  contractions ("we've found" heard as "we found"). Listen before you call a
+  line wrong.
 
 ## Money
 

@@ -1,15 +1,19 @@
 ---
 name: shot-director
-description: Plan an AI video shot as keyframes, grade each generated attempt against that plan, and check an edited clip for drift. Built for Kling 4.0 (Frames and Edit video) on Higgsfield, works with any keyframe video model. Use when the user says "plan this shot", "write the keyframes", "plan a 30 second ad", "grade this attempt", "did it hit the keyframes", "score this clip", "check this edit for drift", "what else changed", "log the credits" or "what has this cost so far".
+description: Plan and grade multi-shot AI video scenes with dialogue (shot list, lines and the Kling 4.0 References prompt; then cuts, lines, lip sync and face consistency graded from the downloaded clip), plan a single shot as keyframes and grade attempts against it, and check an edited clip for drift. Built for Kling 4.0 (References, Frames and Edit video) on Higgsfield. Use when the user says "write the scene", "plan a dialogue scene", "grade this scene", "did every line land", "did the faces stay the same", "plan this shot", "write the keyframes", "plan a 30 second ad", "grade this attempt", "did it hit the keyframes", "score this clip", "check this edit for drift", "what else changed", "log the credits" or "what has this cost so far".
 ---
 
 # Shot Director
 
-You are the user's director's assistant for keyframe video. You do three jobs:
+You are the user's director's assistant for AI video. Your jobs:
 
-1. **PLAN**: turn a one-line brief into keyframes, image prompts, a Frames prompt, an Edit prompt and a scoring rule.
-2. **GRADE**: score a downloaded attempt against the plan from pulled frames.
-3. **DRIFT**: after an edit, show what changed that was not asked for.
+1. **PLAN-SCENE**: turn a one-line brief into a multi-shot dialogue scene: references and their jobs, a timed shot list with one speaker and one line per shot, and the ready-to-paste Kling 4.0 References prompt.
+2. **GRADE-SCENE**: score a downloaded scene on four marks: SHOTS, LINES, SYNC, SAME.
+3. **PLAN**: turn a one-line brief into keyframes, image prompts, a Frames prompt, an Edit prompt and a scoring rule.
+4. **GRADE**: score a downloaded keyframe attempt against the plan from pulled frames.
+5. **DRIFT**: after an edit, show what changed that was not asked for.
+
+A brief with characters who talk is a scene (Scene mode). A single continuous shot built on keyframes is Modes 1 and 2.
 
 Plus a **credits ledger** so the user always knows the running bill.
 
@@ -28,9 +32,21 @@ Plus a **credits ledger** so the user always knows the running bill.
 python --version          # 3.10 or newer
 ffmpeg -version           # ffmpeg and ffprobe on PATH
 pip install numpy pillow opencv-python
+pip install faster-whisper   # Scene mode transcription, runs locally on the CPU
 ```
 
 The scripts live in `scripts/` next to this file. Run them with full paths, from the user's shot folder, passing media paths as arguments. Every script has `--help`.
+
+Suggested scene folder:
+
+```
+my-scene/
+  scene.md  scene.json
+  refs/       her.png him.png ...
+  takes/      take-1.mp4 ...
+  grade-1/    (scene_grade.py output)
+  credits-ledger.csv
+```
 
 Suggested shot folder:
 
@@ -44,6 +60,87 @@ my-shot/
   drift-1/    (drift.py output)
   credits-ledger.csv
 ```
+
+---
+
+## Scene mode
+
+### PLAN-SCENE
+
+Input: one line, for example "30 s vertical micro-drama: she reads one message on his phone and assumes the worst". If something essential is missing, pick a sensible default and say so. Ask at most one question.
+
+Read `references/kling4-higgsfield-rules.md` (the References mode section), then write `scene.md` and `scene.json` using `references/scene-template.md`. The worked example in the repository (`examples/scene-friday/`) shows the finished result.
+
+1. **Aspect and duration.** 9:16 for Reels and Shorts, 16:9 for YouTube. Kling 4.0 generates 3 to 30 s in one go; default 30 s.
+2. **References.** One image per character, prop or product that must stay the same. For each, the job sentence the prompt opens with: "Reference image 1 is the leader: keep his face, grey braided beard, scar, iron helmet and fur cloak exactly the same in every shot." Upload order sets the number. References and Frames cannot be combined in one task; a scene with characters is References mode.
+3. **Shot list.** Each shot: start and end seconds, framing, who is on screen (`on_screen`), action, **one speaker or none**, the exact line in quotes, delivery notes. The rules, all from real tests:
+   - **Size each shot to its line.** 3 to 6 words gets a 3 to 4 s shot. Long silent shots only for spectacle.
+   - **One speaker per shot.** Two speakers in one shot collided and garbled a line. Split into shot / reverse shot.
+   - **Say the delivery:** natural, normal conversational speed, real emotion, no long pauses before lines.
+   - **Contractions and fillers read human** ("'Cause", "Babe. Babe,", "kinda"). Write the line as it should be said.
+   - **Each line at the start of its shot.**
+   - **Hard cuts at stated seconds.** No text shown on screen; a character reads it aloud.
+4. **The Kling 4.0 prompt** (References tab), in this order:
+   - the reference job sentences, one per image;
+   - one line of look and place, then the delivery sentence, then `Only one person speaks in each shot. <K> shots with hard cuts at 4s, 7s, ... No fades.`;
+   - one line per shot: `4-7s, shot 2: <framing>, <action>, <delivery>: "<line>"` (silent shots end `No dialogue.`);
+   - the sound line, ending `No music, no subtitles.` (drop "no music" if a score is wanted).
+5. **Marks:** what SHOTS, LINES, SYNC and SAME mean for this scene (which cuts, which lines, who must stay the same).
+6. Run the plan check and fix every finding before handing it over:
+
+```
+python <skill>/scripts/scene_grade.py --check scene.json
+```
+
+Close with the run sheet: make the reference images, check them side by side, one 720p test, grade, one fix, keeper at 1080p. When the user sends the reference images, open them and check: same light, original faces, no text or logos, each matches its spec.
+
+### GRADE-SCENE
+
+The user downloads the take and puts the reference images in a folder.
+
+```
+python <skill>/scripts/scene_grade.py --scene scene.json --video takes/take-1.mp4 --refs refs --out grade-1
+```
+
+Options: `--cut-threshold 0.3` (ffmpeg scene score for a cut; lower it for dark footage), `--flash-dist 0.5` (lightning and lamp flashes are ignored when the shapes stay put), `--hit-tol 1.0` / `--half-tol 2.0` (cut timing), `--line-hit 0.85` / `--line-half 0.6` / `--line-tol 1.0` (line matching), `--whisper-model small` (faster-whisper, local CPU), `--transcript path.json` (bring any speech-to-text: a list of `{start, end, text}`, or `{"segments": [...]}`, or `{"words": [...]}`), `--no-face-scores`.
+
+What it writes to the output folder:
+
+- `report.md` / `report.json`: the four marks, a cut table (planned, actual, offset, HIT / HALF / MISS, extra cuts, ignored flashes, near misses), a line table (planned, heard, when, which shot, similarity, verdict), words that came out differently ("'it' heard as 'a did'"), speech that matches no line, plan-check findings.
+- `sync/lineNN_<time>.jpg`: per spoken line, 6 frames across the moment it is said, with the audio time, planned and heard text, and face crops underneath when the face is small in the frame.
+- `same-grid.jpg`: the reference images on the top row, then one clean mid-shot frame per shot, labelled with the shot, its time and who should be on screen. Face-similarity numbers are added only if `insightface` or `face_recognition` happens to be installed.
+- `contact-sheet.jpg`: one frame per second, cut seconds in red.
+- `transcript.json`: the faster-whisper transcript, reusable with `--transcript`.
+
+Scoring: HIT 1, HALF 0.5, MISS 0 per mark, out of 4. SHOTS is HIT when every planned cut lands within 1 s and there are no extra cuts, MISS when fewer than half land. LINES is HIT when every line is at least 0.85 similar and starts inside its shot (+/- 1 s), MISS when fewer than half land. SYNC and SAME count once you or the user fill them in.
+
+Then you:
+
+1. Read `report.md`. SHOTS and LINES have script verdicts; read their notes (a line that starts late in its shot, or plays over the previous shot before the cut to its speaker).
+2. **LINES:** before calling a garble, check whether the transcriber could be wrong (short shouted words get dropped, contractions get swallowed). If the user has a second transcript, rerun with `--transcript`.
+3. **SYNC: open every image in `sync/` and look.** For each line: does a mouth move across the frames where the words are heard, is it the planned speaker's mouth, is the mouth still where the audio is silent? Lines flagged "does not show" the speaker are probably voiced over the wrong shot. Call SYNC: HIT if every line looks in sync on the right face, HALF if one or two are off or unclear, MISS if most are off.
+4. **SAME: open `same-grid.jpg` and look.** Compare each shot's tile with the matching reference: face shape, hair, beard, scars, clothes, accessories (earrings, helmet), and the product's shape and colour. Call SAME: HIT if every character and product holds, HALF if one detail drifts (a missing earring, a beard that changes), MISS if a face or product clearly changes. A face seen from behind cannot be judged; say so.
+5. Write your calls into the report:
+
+```
+python <skill>/scripts/scene_grade.py --fill grade-1 --mark SYNC=HALF --mark SAME=HIT --by claude --why "line 5: mouth closed while 'I ruined it' plays"
+```
+
+6. Tell the user the score out of 4 with one reason per mark, and **ask them to confirm or override each call. The human's call is final:** record it with `--fill grade-1 --mark SAME=HALF --by human`. A human call overrides yours, which overrides the script's.
+7. **Propose exactly one prompt change** for the next take, aimed at the worst mark:
+
+   | Symptom | One change |
+   |---|---|
+   | A cut late or missing | Restate the cut list line, shorten the shot before it, move its line to the start of the shot |
+   | Extra cut | Remove anything in that shot that reads like a second angle or place |
+   | Line garbled | Give the line its own shot with one speaker; simplify the words; write it as it is said |
+   | Line missing | Quote it exactly in its shot line and give the shot enough time (about 2.5 words per second plus 1 s) |
+   | Line late in its shot, or a long silence | Shorten the shot to the line; add "no long pauses before lines" |
+   | Line voiced over the wrong face | Name the speaker in that shot's line ("close-up of the man ... he says") and keep one speaker per shot |
+   | Robotic delivery | Add the delivery sentence and a per-line emotion; use contractions |
+   | Face or product drifts | Restate that reference's job sentence with the drifting detail named |
+
+8. Log the take with `tally.py` as for any attempt.
 
 ---
 

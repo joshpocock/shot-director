@@ -1,0 +1,149 @@
+{
+  "schema": "shot-director/scene@1",
+  "title": "Friday",
+  "brief": "30-second vertical micro-drama: she reads one message on his phone and assumes the worst; it is a proposal.",
+  "aspect": "9:16",
+  "duration_s": 30,
+  "mode": "references",
+  "quality": {
+    "test": "720p",
+    "final": "1080p"
+  },
+  "setting": "A warm, dimly lit restaurant booth at night, candle on the table.",
+  "references": [
+    {
+      "index": 1,
+      "id": "her",
+      "file": "her.png",
+      "role": "character",
+      "spec": "woman, late 20s, dark curly hair, gold hoop earrings, cream knit top",
+      "job": "Reference image 1 is the woman: keep her face, dark curly hair, gold hoop earrings and cream knit top exactly the same in every shot."
+    },
+    {
+      "index": 2,
+      "id": "him",
+      "file": "him.png",
+      "role": "character",
+      "spec": "man, late 20s, short beard, navy overshirt",
+      "job": "Reference image 2 is the man: keep his face, short beard and navy overshirt exactly the same in every shot."
+    }
+  ],
+  "delivery": "casual, natural American English at normal conversational speed with real emotion, no robotic delivery, no long pauses before lines",
+  "shots": [
+    {
+      "id": 1,
+      "start_s": 0,
+      "end_s": 4,
+      "framing": "over the man's shoulder",
+      "on_screen": [
+        "her",
+        "him"
+      ],
+      "action": "his phone buzzes face up on the table; she picks it up and reads it out. The phone screen is never shown.",
+      "speaker": "her",
+      "line": "Do not tell her about Friday?",
+      "delivery": "reading it out, half amused then suspicious"
+    },
+    {
+      "id": 2,
+      "start_s": 4,
+      "end_s": 7,
+      "framing": "close-up of the man",
+      "on_screen": [
+        "him"
+      ],
+      "action": "caught, a quick nervous laugh",
+      "speaker": "him",
+      "line": "Babe. Babe, it's not what you think.",
+      "delivery": "talking fast, nervous"
+    },
+    {
+      "id": 3,
+      "start_s": 7,
+      "end_s": 12,
+      "framing": "close-up of the woman",
+      "on_screen": [
+        "her"
+      ],
+      "action": "arms crossed",
+      "speaker": "her",
+      "line": "Then what is it? 'Cause it looks exactly like what I think.",
+      "delivery": "cold and quick"
+    },
+    {
+      "id": 4,
+      "start_s": 12,
+      "end_s": 16,
+      "framing": "close-up of the man",
+      "on_screen": [
+        "him"
+      ],
+      "action": "he exhales, gives up, reaches into his jacket",
+      "speaker": "him",
+      "line": "Okay. It was supposed to be Friday.",
+      "delivery": "quiet and a little embarrassed"
+    },
+    {
+      "id": 5,
+      "start_s": 16,
+      "end_s": 20,
+      "framing": "close insert on the table",
+      "on_screen": [
+        "ring box",
+        "his hand"
+      ],
+      "subject": "ring box",
+      "action": "his hand sets a small open ring box next to the candle; the ring catches the light. A small surprised gasp off screen.",
+      "speaker": null,
+      "line": null,
+      "delivery": ""
+    },
+    {
+      "id": 6,
+      "start_s": 20,
+      "end_s": 25,
+      "framing": "close-up of the woman",
+      "on_screen": [
+        "her"
+      ],
+      "action": "both hands over her mouth, eyes filling up, laughing and crying at once",
+      "speaker": "her",
+      "line": "Oh my God. I ruined it.",
+      "delivery": "shocked, laughing and crying at once"
+    },
+    {
+      "id": 7,
+      "start_s": 25,
+      "end_s": 30,
+      "framing": "close-up of the man",
+      "on_screen": [
+        "him"
+      ],
+      "action": "grinning; she laughs off screen",
+      "speaker": "him",
+      "line": "Yeah. You kinda did.",
+      "delivery": "warm and teasing"
+    }
+  ],
+  "sound": "quiet restaurant ambience, cutlery, low chatter. No music, no subtitles.",
+  "kling_prompt": "Reference image 1 is the woman: keep her face, dark curly hair, gold hoop earrings and cream knit top exactly the same in every shot. Reference image 2 is the man: keep his face, short beard and navy overshirt exactly the same in every shot.\nA photorealistic vertical micro-drama in a warm, dimly lit restaurant booth at night, candle on the table. Fast, natural pacing like a real TV drama: every line is delivered in casual, natural American English at normal conversational speed with real emotion, no robotic delivery, no long pauses before lines. Only one person speaks in each shot. Seven shots with hard cuts at 4s, 7s, 12s, 16s, 20s and 25s. No fades.\n0-4s, shot 1: over the man's shoulder: his phone buzzes face up on the table; she glances at it, picks it up and reads it out, half amused then suspicious: \"Do not tell her about Friday?\" The phone screen is never shown.\n4-7s, shot 2: close-up of the man, caught, a quick nervous laugh, talking fast: \"Babe. Babe, it's not what you think.\"\n7-12s, shot 3: close-up of the woman, arms crossed, cold and quick: \"Then what is it? 'Cause it looks exactly like what I think.\"\n12-16s, shot 4: close-up of the man, he exhales, gives up, reaches into his jacket, quiet and a little embarrassed: \"Okay. It was supposed to be Friday.\"\n16-20s, shot 5: close insert: his hand sets a small open ring box on the table next to the candle; the ring catches the light. A small surprised gasp off screen. No dialogue.\n20-25s, shot 6: close-up of the woman, both hands over her mouth, eyes filling up, laughing and crying at once: \"Oh my God. I ruined it.\"\n25-30s, shot 7: close-up of the man grinning, warm and teasing: \"Yeah. You kinda did.\" She laughs off screen.\nSound: quiet restaurant ambience, cutlery, low chatter. No music, no subtitles.",
+  "marks": {
+    "SHOTS": "cuts at 4, 7, 12, 16, 20 and 25 s, within 1 s",
+    "LINES": "all six lines spoken, each at the start of its own shot",
+    "SYNC": "the speaking mouth moves on the words, and it is the right person's mouth",
+    "SAME": "both faces, her hoops and knit top, his beard and overshirt identical in every shot; the ring box only in shot 5 onward"
+  },
+  "scoring": {
+    "points": {
+      "HIT": 1,
+      "HALF": 0.5,
+      "MISS": 0
+    },
+    "out_of": 4,
+    "cut_hit_tol_s": 1.0,
+    "cut_half_tol_s": 2.0,
+    "line_hit_similarity": 0.85,
+    "line_half_similarity": 0.6
+  },
+  "caption": "Would you have read it?"
+}
