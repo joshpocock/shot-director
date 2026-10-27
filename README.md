@@ -8,9 +8,10 @@ drift.
 Built for **Kling 4.0 on Higgsfield** (References, Frames and Edit video). The
 keyframe tools work with any video model that takes keyframes.
 
-It never generates anything and never spends credits. You make every image and
-video on the platform; Claude writes the plan, reads the frames you pull, and
-keeps the bill.
+By default you make every image and video on the platform; Claude writes the
+plan, reads the frames you pull, and keeps the bill. If you'd rather never leave
+Claude Code, connect the Higgsfield MCP and ask it to generate: it quotes the
+credits first and runs a take only after you say yes.
 
 ## What you get
 
@@ -37,6 +38,7 @@ keeps the bill.
 | "Which format should I use?" / "Write an animated ad for a small speaker." | Picks one of three proven 30 s formats (cinematic scene, micro-drama Reel, animated story ad), says why, and writes the scene on its beat timing. |
 | "Make reference images for the two characters." | Writes one image prompt per character, creature or product (framing, background, light, the identifiers to keep) and the keep-line for each in the video prompt. Checks the images when you send them. |
 | "Make it look expensive." | Art-directs the stills: contrast against the set, what the light does, one palette with the product brightest, a named lens, fixed light, materials, and what to drop. Gives the build order and the consistency check. |
+| "Generate take 2 for me." (Higgsfield MCP connected) | Uploads the references, gets the live credit quote, asks you, and only on a yes runs the take on Kling 4.0, downloads it into `takes/` and grades it. References, start and end frames, and Edit video; a plan with middle keyframes stays on the website. See `references/generate-higgsfield-mcp.md`. |
 | "Log 42 credits for attempt 2." / "What has this cost?" | Keeps a CSV ledger with `tally.py`: totals, credits per usable second, dollar total. |
 
 ## Install
