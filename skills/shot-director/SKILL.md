@@ -80,11 +80,11 @@ my-shot/
 
 Input: one line, for example "30 s vertical micro-drama: she reads one message on his phone and assumes the worst". If something essential is missing, pick a sensible default and say so. Ask at most one question.
 
-Read `references/kling4-higgsfield-rules.md` (the References mode section), `references/scene-formats.md` and `references/reference-sheets.md`, then write `scene.md` and `scene.json` using `references/scene-template.md`. Worked examples in `examples/` next to this file, one per format (read the matching one before you write; it holds the tested prompt): `examples/scene-viking/` (cinematic scene), `examples/scene-friday/` (micro-drama Reel), `examples/scene-grandpa/` (animated story ad in Frames, with the Edit video pass).
+Read `references/kling4-higgsfield-rules.md` (the References mode section), `references/scene-formats.md` and `references/reference-sheets.md`, then write `scene.md` and `scene.json` using `references/scene-template.md`. Worked examples in `examples/` next to this file, one per format. They show what finished output looks like; they are not templates. Always write the user's own brief (their characters, creature, product, setting and lines) with the rules above, and never swap in an example's story: `examples/scene-viking/` (cinematic scene), `examples/scene-friday/` (micro-drama Reel), `examples/scene-grandpa/` (animated story ad in Frames, with the Edit video pass).
 
 0. **Format.** Pick one of the three in `scene-formats.md` and say which. "Which format should I use?": a product that must appear means the animated story ad, or a micro-drama with the product last; reach on Reels and Shorts means the micro-drama; a showcase or a hook means the cinematic scene. Use its beat table as the starting shot list.
 1. **Aspect and duration.** 9:16 for Reels and Shorts, 16:9 for YouTube. Kling 4.0 generates 3 to 30 s in one go; default 30 s.
-2. **References.** One image per character, prop or product that must stay the same. For each, the job sentence the prompt opens with: "Reference image 1 is the leader: keep his face, grey braided beard, scar, iron helmet and fur cloak exactly the same in every shot." Upload order sets the number. References and Frames cannot be combined in one task: a dialogue scene with characters is References mode; an animated ad on planned keyframes is Frames, and the start and end frames hold the characters (see `reference-sheets.md`).
+2. **References.** First look for existing images: a `refs/` folder in the working folder, or images the user names. If there are any, open each one and write the scene around them (their faces, clothes, creature and product exactly as shown, in a sensible upload order) instead of inventing new characters, and say which image is reference 1, 2, 3. Only invent characters when there are no images. One image per character, prop or product that must stay the same. For each, the job sentence the prompt opens with: "Reference image 1 is the leader: keep his face, grey braided beard, scar, iron helmet and fur cloak exactly the same in every shot." Upload order sets the number. References and Frames cannot be combined in one task: a dialogue scene with characters is References mode; an animated ad on planned keyframes is Frames, and the start and end frames hold the characters (see `reference-sheets.md`).
 3. **Shot list.** Each shot: start and end seconds, framing, who is on screen (`on_screen`), action, **one speaker or none**, the exact line in quotes, delivery notes. The rules, all from real tests:
    - **Size each shot to its line.** 3 to 6 words gets a 3 to 4 s shot. Long silent shots only for spectacle.
    - **One speaker per shot.** Two speakers in one shot collided and garbled a line. Split into shot / reverse shot.
@@ -105,6 +105,13 @@ python <skill>/scripts/scene_grade.py --check scene.json
 ```
 
 7. **Make the references** (before anything is generated). Write one image prompt per reference in `scene.md`, from the templates in `reference-sheets.md`: framing, plain background, the same soft light for all, the identifiers the job sentence names, "No text, no logos." For a Frames scene, the start frame prompt and the end frame as an edit of it with the product still as a second image. The user makes the images; you do not. If the image filter blocks one, reword it as `reference-sheets.md` describes.
+
+**Your reply in chat, in this order, every time** (the user copies from chat, not from the file):
+   1. **Step 1, make the pictures.** Every reference image prompt in its own code block, headed with the file name to save it as (`refs/astrid.png`) and one line: make it in an image generator (on Higgsfield: Image), 3:4, the same model for all, save into `refs/`. Skip this step only when the scene was written around existing images in `refs/`, and say so.
+   2. **Step 2, upload order:** the pictures in Reference image 1, 2, 3 order.
+   3. **Step 3, the video prompt** in one code block, with mode, aspect and duration.
+   4. **Step 4:** one 720p test, read the credit quote on Generate, download into `takes/`, then "grade this scene".
+   Keep the shot summary short and after the four steps, never in front of them.
 
 Close with the run sheet: make the reference images, check them side by side, one 720p test, grade, one fix, keeper at 1080p. When the user sends the reference images, open them and check them against the list at the end of `reference-sheets.md`: one subject each, same light, original faces, every identifier in the job sentence visible, no text or logos.
 
