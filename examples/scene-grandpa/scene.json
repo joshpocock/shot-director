@@ -1,0 +1,147 @@
+{
+  "schema": "shot-director/scene@1",
+  "title": "Grandpa's Radio",
+  "brief": "30-second animated story ad: Grandpa's old radio dies on his birthday; his granddaughter's gift, a small speaker, turns the night around. Client note: make the speaker matte black.",
+  "format": "animated story ad",
+  "aspect": "16:9",
+  "duration_s": 30,
+  "mode": "frames",
+  "quality": {
+    "test": "720p",
+    "final": "1080p"
+  },
+  "setting": "A cozy stylized 3D animated living room at night, warm lamp light, a birthday cake on the coffee table, an empty wall shelf on the right.",
+  "product": "Kiln (a made-up brand): a small matte terracotta speaker, a squat rounded block wider than it is tall, one thin light bar on the front, no text, no logo.",
+  "references": [],
+  "frames": [
+    {
+      "index": 1,
+      "id": "start",
+      "file": "start.png",
+      "time_s": 0,
+      "role": "start frame",
+      "must_be_true": "grandfather tapping the old radio, frowning in a funny way; wall shelf empty; no speaker anywhere; no granddaughter",
+      "image_prompt": "Cozy stylized 3D cartoon render, family animation look, soft rounded shapes, warm colors, 16:9. A cozy living room at night, lit by a warm table lamp: a green armchair, bookshelves with framed family photos, a patterned rug, a birthday cake with four lit candles on a low wooden coffee table, and an empty wooden wall shelf on the right. A cheerful-looking older man with white hair, a big white mustache and round glasses, in a brown knit cardigan over a checked shirt, leans over an old wooden radio on a side table and taps it, frowning in a funny way. No text, no logos."
+    },
+    {
+      "index": 2,
+      "id": "end",
+      "file": "end.png",
+      "time_s": 30,
+      "role": "end frame (pinned)",
+      "must_be_true": "grandfather and granddaughter dancing hand in hand, laughing; the speaker on the wall shelf, light bar on; same room, light and camera as the start frame",
+      "image_prompt": "Edit the first image. Same living room, same lamp light, same cake, same camera position and framing, same cartoon style. The old man now dances with his granddaughter, about eight, with brown pigtails and pastel floral pajamas; they hold hands and both laugh. On the wall shelf on the right stands the small speaker from the second image, redrawn in the same cartoon style, with exactly its shape and terracotta color, its thin light bar glowing soft cool white. Change nothing else. No text, no logos.",
+      "made_from": "edit of start.png, with the product still as the second image"
+    }
+  ],
+  "optional_middle_frames": [
+    {
+      "time_s": 8,
+      "state": "granddaughter holding out the small charcoal gift box"
+    },
+    {
+      "time_s": 17,
+      "state": "the speaker on the wall shelf, light bar on"
+    }
+  ],
+  "delivery": "naturally with real emotion, at normal speed, no long pauses before lines",
+  "shots": [
+    {
+      "id": 1,
+      "start_s": 0,
+      "end_s": 8,
+      "framing": "medium wide",
+      "on_screen": [
+        "grandpa",
+        "radio"
+      ],
+      "action": "taps his old wooden radio; it crackles, then dies with a small pop and a puff of dust",
+      "speaker": "grandpa",
+      "line": "Forty years. Never let me down.",
+      "delivery": "grumbling, a gruff old voice"
+    },
+    {
+      "id": 2,
+      "start_s": 8,
+      "end_s": 17,
+      "framing": "closer",
+      "on_screen": [
+        "girl",
+        "grandpa",
+        "gift box"
+      ],
+      "action": "the granddaughter runs in and holds out a small charcoal gift box; he takes it and opens it, unimpressed",
+      "speaker": "girl",
+      "line": "Happy birthday, Grandpa! It's better, I promise.",
+      "delivery": "bright"
+    },
+    {
+      "id": 3,
+      "start_s": 17,
+      "end_s": 24,
+      "framing": "close-up of the wall shelf, then the grandfather's face",
+      "on_screen": [
+        "Kiln speaker",
+        "grandpa"
+      ],
+      "subject": "Kiln speaker",
+      "action": "the speaker's light bar glows soft cool white and a warm old swing tune starts; the grandfather's eyebrows rise",
+      "speaker": "grandpa",
+      "line": "Well, I'll be.",
+      "delivery": "softly, amazed"
+    },
+    {
+      "id": 4,
+      "start_s": 24,
+      "end_s": 30,
+      "framing": "wide",
+      "on_screen": [
+        "grandpa",
+        "girl",
+        "Kiln speaker"
+      ],
+      "action": "they dance around the rug, laughing, the speaker glowing on the shelf",
+      "speaker": "narrator",
+      "voiceover": true,
+      "line": "Kiln. Small speaker, big room.",
+      "delivery": "warm female voiceover, pronounced Kill-n"
+    }
+  ],
+  "sound": "radio crackle and pop, footsteps, then the swing music to the end. No subtitles.",
+  "kling_prompt": "A stylized 3D animated family film, warm and joyful, same living room, same characters and same look in every shot. The start image is the first frame and the end image is the last frame. Every line is delivered naturally with real emotion, at normal speed, no long pauses before lines. Only one person speaks in each shot. Four shots with hard cuts at 8s, 17s and 24s. No fades.\n0-8s, shot 1: the grandfather with the white mustache taps his old wooden radio; it crackles, then dies with a small pop and a puff of dust. He grumbles in English, in a gruff old voice: \"Forty years. Never let me down.\"\n8-17s, shot 2: closer: his granddaughter, about eight, with two pigtails and pastel pajamas, runs in and holds out a small charcoal gift box with both hands, and says brightly in English: \"Happy birthday, Grandpa! It's better, I promise.\" He takes it and opens it, unimpressed.\n17-24s, shot 3: close-up of the wall shelf: a small matte terracotta speaker, a squat rounded block wider than it is tall, its thin light bar glows soft cool white, and a warm old swing tune starts playing. Cut to the grandfather's eyebrows rising as he says softly in English: \"Well, I'll be.\"\n24-30s, shot 4: wide: the grandfather takes the girl's hands and they dance around the rug, laughing, the speaker glowing on the shelf. A warm female voiceover says in English, pronounced \"Kill-n\": \"Kiln. Small speaker, big room.\"\nSound: radio crackle and pop, footsteps, then the swing music to the end. No subtitles.",
+  "edit": {
+    "client_note": "Love it. Can we see it in matte black? Keep everything else.",
+    "tab": "Edit video",
+    "source": "the 1080p keeper (video 1)",
+    "reference_images": [
+      {
+        "index": 1,
+        "id": "black-still",
+        "file": "black-still.png",
+        "image_prompt": "Edit this image. Change only the speaker's body color from matte terracotta to matte black, same cartoon style, same shape, size and position, no shine. Its light bar keeps glowing soft cool white. Keep the brightness and color of the room exactly the same. Change nothing else.",
+        "made_from": "edit of end.png"
+      }
+    ],
+    "prompt": "Do not add any object that is not in the original video. The wall shelf stays empty until 17s. Every movement, pose, gesture and camera framing stays exactly as in the original video, frame for frame; only the speaker's color changes.\nEdit @video_1. Change only the small speaker's body color: everywhere the speaker appears, in the gift box, on the wall shelf and in the last shot, it becomes matte black like the speaker in @image_1, same cartoon style, same shape, size, position and movement. Its light bar stays soft cool white and comes on at the same moment.\nKeep unchanged: the grandfather, the granddaughter, their faces, clothes, voices and lines, the living room, the lamp light, the cake, the old radio, the gift box, the cuts, the camera, the timing, the music and the voiceover.",
+    "first_pass_result": "without the first line: a black speaker appeared on the shelf before the gift was opened, and the hand-off and the dance were re-animated",
+    "drift_check": "drift.py --source keeper.mp4 --edited edited.mp4 --out drift-1 --focus-hint speaker"
+  },
+  "marks": {
+    "SHOTS": "cuts at 8, 17 and 24 s, within 1 s (the tested prompt also asks for a cut inside shot 3; see scene.md)",
+    "LINES": "grandpa's two lines, the girl's line and the tag line all spoken, in their shots",
+    "SYNC": "grandpa's mouth on his lines, the girl's on hers; the tag line is a voiceover",
+    "SAME": "grandpa, the girl, the room and the speaker's shape and colour the same in every shot; the shelf empty until 17 s"
+  },
+  "scoring": {
+    "points": {
+      "HIT": 1,
+      "HALF": 0.5,
+      "MISS": 0
+    },
+    "out_of": 4,
+    "cut_hit_tol_s": 1.0,
+    "cut_half_tol_s": 2.0,
+    "line_hit_similarity": 0.85,
+    "line_half_similarity": 0.6
+  }
+}

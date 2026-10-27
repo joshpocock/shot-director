@@ -1,0 +1,162 @@
+{
+  "schema": "shot-director/scene@1",
+  "title": "Edge of the Map",
+  "brief": "30-second cinematic scene: Vikings sail past the edge of every map and meet something that has been waiting under the sea.",
+  "format": "cinematic scene",
+  "aspect": "16:9",
+  "duration_s": 30,
+  "mode": "references",
+  "quality": {
+    "test": "720p",
+    "final": "1080p"
+  },
+  "setting": "Cold blue dawn on a dark stormy sea in thick fog; a Viking longship with a carved dragon prow, a striped sail and round wooden shields.",
+  "references": [
+    {
+      "index": 1,
+      "id": "leader",
+      "file": "leader.png",
+      "role": "character",
+      "spec": "Viking chieftain in his fifties, long grey beard braided at the chin, pale scar through his left eyebrow, grey eyes, round iron helmet with a nose guard, heavy brown fur cloak over chain mail",
+      "image_prompt": "Photorealistic character reference portrait, waist up, facing the camera, plain dark grey studio background, soft even light. A Viking chieftain in his fifties: long grey beard braided at the chin, weathered skin, a pale scar running through his left eyebrow, piercing grey eyes, a round iron helmet with a nose guard, a heavy brown fur cloak over chain mail and dark wool, a leather strap across his chest. Stern, calm expression. No text, no logos.",
+      "job": "Reference image 1 is the Viking leader: keep his face, grey braided beard, scar through his left eyebrow, iron helmet and fur cloak exactly the same in every shot."
+    },
+    {
+      "index": 2,
+      "id": "rower",
+      "file": "rower.png",
+      "role": "character",
+      "spec": "young Viking rower about seventeen, freckles, red-brown hair, no helmet",
+      "image_prompt": "Photorealistic character reference portrait, waist up, facing the camera, plain dark grey studio background, soft even light. A young Viking rower about seventeen: red-brown hair, a freckled face, no helmet, a plain undyed wool tunic with a leather belt. Wary, calm expression. No text, no logos.",
+      "job": "Reference image 2 is the young rower: keep his face, freckles and red-brown hair the same in every shot."
+    },
+    {
+      "index": 3,
+      "id": "robot",
+      "file": "robot.png",
+      "role": "creature",
+      "spec": "colossal ancient sea robot, broad rounded head, two large round amber eyes, rusted dark iron plates, barnacles and seaweed",
+      "image_prompt": "Photorealistic creature design reference, front view, head and torso, plain dark grey studio background, soft even light. A colossal ancient robot that has slept under the sea for centuries: a broad rounded head, two large round eyes glowing warm amber, dark weathered iron plates streaked with orange rust, clusters of barnacles and strands of seaweed hanging from its shoulders. No text, no logos.",
+      "job": "Reference image 3 is the giant sea robot: keep its shape, rusted iron, barnacles and amber eyes the same in every shot."
+    }
+  ],
+  "delivery": "natural English with real emotion, at normal speed, no long pauses before lines",
+  "shots": [
+    {
+      "id": 1,
+      "start_s": 0,
+      "end_s": 4,
+      "framing": "wide and low over the water",
+      "on_screen": [
+        "longship",
+        "crew"
+      ],
+      "action": "the longship slides out of the fog, the crew rowing",
+      "speaker": "narrator",
+      "voiceover": true,
+      "line": "They sailed past the edge of every map.",
+      "delivery": "an old man, low, slow, Norse-accented English"
+    },
+    {
+      "id": 2,
+      "start_s": 4,
+      "end_s": 8,
+      "framing": "close-up of the leader at the prow",
+      "on_screen": [
+        "leader"
+      ],
+      "action": "raises a fist",
+      "speaker": "leader",
+      "line": "Hold the oars. Something's under us.",
+      "delivery": "quiet and tense"
+    },
+    {
+      "id": 3,
+      "start_s": 8,
+      "end_s": 12,
+      "framing": "close-up of the young rower",
+      "on_screen": [
+        "rower"
+      ],
+      "action": "freezes mid-stroke",
+      "speaker": "rower",
+      "line": "What is it?",
+      "delivery": "whispering, scared"
+    },
+    {
+      "id": 4,
+      "start_s": 12,
+      "end_s": 19,
+      "framing": "wide",
+      "on_screen": [
+        "robot",
+        "longship"
+      ],
+      "subject": "robot",
+      "action": "the sea ahead swells, two amber lights glow under the water, then the robot's head and shoulders rise slowly out of the sea, seawater pouring off it; a deep metallic groan",
+      "speaker": null,
+      "line": null,
+      "delivery": ""
+    },
+    {
+      "id": 5,
+      "start_s": 19,
+      "end_s": 22,
+      "framing": "close-up of the young rower",
+      "on_screen": [
+        "rower"
+      ],
+      "action": "looking up",
+      "speaker": "rower",
+      "line": "That's no whale.",
+      "delivery": "his voice shaking"
+    },
+    {
+      "id": 6,
+      "start_s": 22,
+      "end_s": 26,
+      "framing": "close-up of the leader",
+      "on_screen": [
+        "leader"
+      ],
+      "action": "a grim half smile, tightening his grip on his axe",
+      "speaker": "leader",
+      "line": "No, boy. That's the end of the world.",
+      "delivery": "grim half smile, low and certain"
+    },
+    {
+      "id": 7,
+      "start_s": 26,
+      "end_s": 30,
+      "framing": "low hero shot from behind the leader",
+      "on_screen": [
+        "leader",
+        "robot"
+      ],
+      "action": "he lifts his axe toward the towering robot while lightning forks across the clouds; a thunderclap",
+      "speaker": "leader",
+      "line": "Row!",
+      "delivery": "roars"
+    }
+  ],
+  "sound": "crashing waves, creaking wood, oars, wind, thunder. No music, no subtitles.",
+  "kling_prompt": "Reference image 1 is the Viking leader: keep his face, grey braided beard, scar through his left eyebrow, iron helmet and fur cloak exactly the same in every shot. Reference image 2 is the young rower: keep his face, freckles and red-brown hair the same in every shot. Reference image 3 is the giant sea robot: keep its shape, rusted iron, barnacles and amber eyes the same in every shot.\nA photorealistic cinematic scene, cold blue dawn on a dark stormy sea in thick fog. A Viking longship with a carved dragon prow, a striped sail and round wooden shields. Fast, natural pacing like a real film: every line is delivered in natural English with real emotion, at normal speed, no long pauses before lines. Only one person speaks in each shot. Seven shots with hard cuts at 4s, 8s, 12s, 19s, 22s and 26s. No fades.\n0-4s, shot 1: wide and low over the water, the longship slides out of the fog, the crew rowing. A narrator, an old man with a low, slow Norse-accented English voice: \"They sailed past the edge of every map.\"\n4-8s, shot 2: close-up of the leader at the prow raising a fist, quiet and tense: \"Hold the oars. Something's under us.\"\n8-12s, shot 3: close-up of the young rower freezing mid-stroke, whispering, scared: \"What is it?\"\n12-19s, shot 4: wide: the sea ahead swells, two amber lights glow under the water, then the giant robot's head and shoulders rise slowly out of the sea, seawater pouring off it. A deep metallic groan. No dialogue.\n19-22s, shot 5: close-up of the young rower looking up, his voice shaking: \"That's no whale.\"\n22-26s, shot 6: close-up of the leader, a grim half smile, tightening his grip on his axe: \"No, boy. That's the end of the world.\"\n26-30s, shot 7: low hero shot from behind the leader as he lifts his axe toward the towering robot while lightning forks across the clouds. He roars: \"Row!\" A thunderclap.\nSound: crashing waves, creaking wood, oars, wind, thunder. No music, no subtitles.",
+  "marks": {
+    "SHOTS": "cuts at 4, 8, 12, 19, 22 and 26 s, within 1 s; the lightning in shot 7 is not a cut",
+    "LINES": "all six lines spoken, each in its own shot, the narrator over the wide; listen for the shouted 'Row!' before calling it missing",
+    "SYNC": "the leader's mouth on his lines in shots 2 and 6, the rower's in shots 3 and 5; shot 1 is a voiceover and shot 7 is seen from behind",
+    "SAME": "the leader's beard, scar, helmet and cloak identical in shots 2, 6 and 7; the rower's face and freckles in shots 3 and 5; the robot's shape and amber eyes in shots 4 and 7"
+  },
+  "scoring": {
+    "points": {
+      "HIT": 1,
+      "HALF": 0.5,
+      "MISS": 0
+    },
+    "out_of": 4,
+    "cut_hit_tol_s": 1.0,
+    "cut_half_tol_s": 2.0,
+    "line_hit_similarity": 0.85,
+    "line_half_similarity": 0.6
+  }
+}

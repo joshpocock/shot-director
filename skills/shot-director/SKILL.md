@@ -1,6 +1,6 @@
 ---
 name: shot-director
-description: Plan and grade multi-shot AI video scenes with dialogue (shot list, lines and the Kling 4.0 References prompt; then cuts, lines, lip sync and face consistency graded from the downloaded clip), plan a single shot as keyframes and grade attempts against it, and check an edited clip for drift. Built for Kling 4.0 (References, Frames and Edit video) on Higgsfield. Use when the user says "write the scene", "plan a dialogue scene", "grade this scene", "did every line land", "did the faces stay the same", "plan this shot", "write the keyframes", "plan a 30 second ad", "grade this attempt", "did it hit the keyframes", "score this clip", "check this edit for drift", "what else changed", "log the credits" or "what has this cost so far".
+description: Plan and grade multi-shot AI video scenes with dialogue (shot list, lines and the Kling 4.0 References prompt; then cuts, lines, lip sync and face consistency graded from the downloaded clip), plan a single shot as keyframes and grade attempts against it, and check an edited clip for drift. Built for Kling 4.0 (References, Frames and Edit video) on Higgsfield. Use when the user says "write the scene", "plan a dialogue scene", "grade this scene", "did every line land", "did the faces stay the same", "plan this shot", "write the keyframes", "plan a 30 second ad", "grade this attempt", "did it hit the keyframes", "score this clip", "check this edit for drift", "what else changed", "log the credits", "what has this cost so far", "make it look expensive", "make reference images", "which format should I use", "write a micro-drama" or "write an animated ad".
 ---
 
 # Shot Director
@@ -19,12 +19,21 @@ Plus a **credits ledger** so the user always knows the running bill.
 
 ## Ground rules
 
-- **You never generate.** The user makes every image and video on the platform (for example higgsfield.ai). Do not call any image or video generation tool or API from this skill, and never spend the user's credits.
+- **You never generate.** You write the image and video prompts; the user makes every image and video on the platform (for example higgsfield.ai). Do not call any image or video generation tool or API from this skill, and never spend the user's credits.
 - **The human's call is final.** Scripts suggest labels; you give a verdict with reasons; the user confirms or overrides. Record their call, not yours.
 - **Never quote prices.** Prices change. Tell the user to read the credit quote on the Generate button before every click, then log what it said with `tally.py`.
 - **Never claim 4K, HDR or a two-minute extension on Higgsfield.**
 - **Original IP only.** No text, logos or brand marks on products, no real products, no known characters, no real people other than the user.
 - Read `references/kling4-higgsfield-rules.md` before you plan, and again before you suggest a retry. If the user's screen disagrees with it, trust the screen.
+- Which reference to read when:
+
+  | Reference | Read it in | For |
+  |---|---|---|
+  | `kling4-higgsfield-rules.md` | every mode | interface facts, dialogue rules, prompt craft |
+  | `scene-formats.md` | PLAN-SCENE | picking the format (cinematic scene, micro-drama Reel, animated story ad), beat timing, Edit video lessons |
+  | `reference-sheets.md` | PLAN-SCENE | character, creature and product reference images, start and end frames, safety-filter wording |
+  | `look-playbook.md` | PLAN, and PLAN-SCENE when a product or set must look premium | art direction that makes stills look expensive, build order, consistency check |
+  | `scene-template.md` / `plan-template.md` | PLAN-SCENE / PLAN | the files you write |
 
 ## Setup (once)
 
@@ -69,10 +78,11 @@ my-shot/
 
 Input: one line, for example "30 s vertical micro-drama: she reads one message on his phone and assumes the worst". If something essential is missing, pick a sensible default and say so. Ask at most one question.
 
-Read `references/kling4-higgsfield-rules.md` (the References mode section), then write `scene.md` and `scene.json` using `references/scene-template.md`. The worked example in the repository (`examples/scene-friday/`) shows the finished result.
+Read `references/kling4-higgsfield-rules.md` (the References mode section), `references/scene-formats.md` and `references/reference-sheets.md`, then write `scene.md` and `scene.json` using `references/scene-template.md`. Worked examples in the repository, one per format: `examples/scene-viking/` (cinematic scene), `examples/scene-friday/` (micro-drama Reel), `examples/scene-grandpa/` (animated story ad in Frames, with the Edit video pass).
 
+0. **Format.** Pick one of the three in `scene-formats.md` and say which. "Which format should I use?": a product that must appear means the animated story ad, or a micro-drama with the product last; reach on Reels and Shorts means the micro-drama; a showcase or a hook means the cinematic scene. Use its beat table as the starting shot list.
 1. **Aspect and duration.** 9:16 for Reels and Shorts, 16:9 for YouTube. Kling 4.0 generates 3 to 30 s in one go; default 30 s.
-2. **References.** One image per character, prop or product that must stay the same. For each, the job sentence the prompt opens with: "Reference image 1 is the leader: keep his face, grey braided beard, scar, iron helmet and fur cloak exactly the same in every shot." Upload order sets the number. References and Frames cannot be combined in one task; a scene with characters is References mode.
+2. **References.** One image per character, prop or product that must stay the same. For each, the job sentence the prompt opens with: "Reference image 1 is the leader: keep his face, grey braided beard, scar, iron helmet and fur cloak exactly the same in every shot." Upload order sets the number. References and Frames cannot be combined in one task: a dialogue scene with characters is References mode; an animated ad on planned keyframes is Frames, and the start and end frames hold the characters (see `reference-sheets.md`).
 3. **Shot list.** Each shot: start and end seconds, framing, who is on screen (`on_screen`), action, **one speaker or none**, the exact line in quotes, delivery notes. The rules, all from real tests:
    - **Size each shot to its line.** 3 to 6 words gets a 3 to 4 s shot. Long silent shots only for spectacle.
    - **One speaker per shot.** Two speakers in one shot collided and garbled a line. Split into shot / reverse shot.
@@ -86,13 +96,15 @@ Read `references/kling4-higgsfield-rules.md` (the References mode section), then
    - one line per shot: `4-7s, shot 2: <framing>, <action>, <delivery>: "<line>"` (silent shots end `No dialogue.`);
    - the sound line, ending `No music, no subtitles.` (drop "no music" if a score is wanted).
 5. **Marks:** what SHOTS, LINES, SYNC and SAME mean for this scene (which cuts, which lines, who must stay the same).
-6. Run the plan check and fix every finding before handing it over:
+6. Run the plan check and fix every finding before handing it over, or say in `scene.md` why the format accepts it (the one spectacle shot; keyframe-timed shots in an animated ad):
 
 ```
 python <skill>/scripts/scene_grade.py --check scene.json
 ```
 
-Close with the run sheet: make the reference images, check them side by side, one 720p test, grade, one fix, keeper at 1080p. When the user sends the reference images, open them and check: same light, original faces, no text or logos, each matches its spec.
+7. **Make the references** (before anything is generated). Write one image prompt per reference in `scene.md`, from the templates in `reference-sheets.md`: framing, plain background, the same soft light for all, the identifiers the job sentence names, "No text, no logos." For a Frames scene, the start frame prompt and the end frame as an edit of it with the product still as a second image. The user makes the images; you do not. If the image filter blocks one, reword it as `reference-sheets.md` describes.
+
+Close with the run sheet: make the reference images, check them side by side, one 720p test, grade, one fix, keeper at 1080p. When the user sends the reference images, open them and check them against the list at the end of `reference-sheets.md`: one subject each, same light, original faces, every identifier in the job sentence visible, no text or logos.
 
 ### GRADE-SCENE
 
@@ -148,14 +160,14 @@ python <skill>/scripts/scene_grade.py --fill grade-1 --mark SYNC=HALF --mark SAM
 
 Input: one line, for example "30-second ad for a small matte terracotta desk speaker". If something essential is missing, pick a sensible default and say so. Ask at most one question.
 
-Work through these in order, then write `plan.md` and `plan.json` using `references/plan-template.md`. The worked example in the repository (`examples/terracotta-speaker/`) shows the finished result.
+Read `references/look-playbook.md` first: the look is decided in the stills. Then work through these in order and write `plan.md` and `plan.json` using `references/plan-template.md`. The worked example in the repository (`examples/terracotta-speaker/`) shows the finished result.
 
 1. **Subject spec.** One paragraph: shape, size, colour, finish, and what it does not have ("no text, no logo, no buttons"). This exact wording is reused in every prompt. Products never carry text or logos. Keep the design original; avoid silhouettes that read as a famous product.
 2. **Duration and count.** Default 4 keyframes; recommend 3 to 5 for up to 30 s (the platform allows up to 10). Add a keyframe only where the visual state must change.
 3. **Roles and times.** Give each keyframe a role (default: setup, discovery, use, hero). Keyframe 1 is at 0 s. **The last keyframe is the final frame of the clip**, so its time is the clip duration. Middle times go on real beats (when the reveal completes, when the product is placed), not evenly spaced. The platform has no per-keyframe timing; the prompt's timestamps are the only clock.
 4. **Camera first.** Decide the camera in one sentence before writing any frame, then make every keyframe agree with it. If keyframes share a camera position, the camera is locked between them; plan a move only between keyframes whose framing differs.
 5. **"Must be true" list per keyframe.** What the frame must show, including explicit on/off states ("light bar off"), where persistent props are, and "no hands" at keyframe moments.
-6. **Image prompts.** Keyframe 1 from scratch. Each later keyframe is an edit of the previous one with the same image model, changing one or two things, opening with "Same photo, same ... same camera position and framing" unless the camera move is planned there, and ending with "Change nothing else." Restate props that stay. Same aspect ratio and pixel size for all; PNG.
+6. **Image prompts.** Art-direct them with `look-playbook.md` ("make it look expensive"): contrast against the set, what the light does, one palette with the subject brightest, a named lens and focus, a fixed light direction, named materials, and nothing from its Drop list. Under each prompt, one line: "Why this looks expensive: ...". Build order: the product still first, then the base frame (the one that contains every object, not necessarily keyframe 1), then each other frame as an edit of its neighbour; put the product still in as a second image when its shape must hold; build the start frame last when it hides things (a closed box). The simple default: Each later keyframe is an edit of the previous one with the same image model, changing one or two things, opening with "Same photo, same ... same camera position and framing" unless the camera move is planned there, and ending with "Change nothing else." Restate props that stay. Same aspect ratio and pixel size for all; PNG.
 7. **Frames prompt.** In this order:
    - Line 1: `One continuous shot for the full N seconds. No cuts, no angle changes, no scene changes.`
    - Line 2: which images are first and last, and the camera behaviour, matching the keyframes.

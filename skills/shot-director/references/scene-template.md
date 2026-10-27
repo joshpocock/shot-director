@@ -6,7 +6,9 @@ PLAN-SCENE mode writes two files in the scene folder:
   ready-to-paste Kling 4.0 prompt, the four marks.
 - `scene.json`: for `scene_grade.py`. Same content, machine-readable.
 
-A full worked example is in the repository at `examples/scene-friday/`.
+Worked examples are in the repository: `examples/scene-friday/` (micro-drama
+Reel), `examples/scene-viking/` (cinematic scene) and `examples/scene-grandpa/`
+(animated story ad in Frames mode, with an Edit video pass).
 
 ## scene.md layout
 
@@ -96,3 +98,10 @@ Notes:
 - A `lines` list (`[{"speaker", "text", "delivery"}]`) is accepted in a shot
   only so an old plan that broke the one-speaker rule can still be graded;
   `--check` flags it.
+- Each reference may carry an `image_prompt`: the prompt the user pastes to
+  make it (see `reference-sheets.md`).
+- A Frames scene (`"mode": "frames"`) has `"references": []` and a `frames`
+  list instead (`index`, `id`, `file`, `time_s`, `role`, `must_be_true`,
+  `image_prompt`). An `edit` object can hold the Edit video pass (`prompt`,
+  `reference_images`, `drift_check`). `scene_grade.py` ignores these fields;
+  they are for the user and for you. See `examples/scene-grandpa/scene.json`.

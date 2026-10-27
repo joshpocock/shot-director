@@ -12,6 +12,19 @@ It never generates anything and never spends credits. You make every image and
 video on the platform; Claude writes the plan, reads the frames you pull, and
 keeps the bill.
 
+## What you get
+
+- **Three scene formats** that worked in Kling 4.0, with beat timing and
+  pitfalls: the cinematic scene, the vertical micro-drama Reel, the animated
+  story ad (plus the client colour change in Edit video).
+- **Reference image prompts** for characters, creatures and products that
+  keep identity across cuts.
+- **A look playbook** for stills that make the video look expensive: light,
+  contrast, palette, lens, materials, what to drop, and the build order.
+- **Plans you paste:** shot lists, lines, the Kling prompt, image prompts.
+- **Grades from the downloaded clip:** cuts, lines, lip sync, faces,
+  keyframes, drift after an edit, and a credit ledger.
+
 ## What it does
 
 | You ask | Claude does |
@@ -21,6 +34,9 @@ keeps the bill.
 | "Plan a 30-second ad for a small matte terracotta desk speaker as 4 keyframes." | Writes `plan.md` and `plan.json`: subject spec, keyframes with roles, times and a "must be true" list, an image prompt per keyframe, the Frames prompt, an Edit prompt for a likely client note, a scoring rule and a consistency checklist. |
 | "Grade attempt-1.mp4 against the plan." | Runs `grade.py`, looks at the plan-versus-output images, calls each keyframe HIT, LATE / EARLY or MISS, lists cuts with timestamps, scores it, and proposes exactly one prompt change for the next attempt. Your call is final. |
 | "The client wants it matte black. Check edited.mp4 against the source." | Runs `drift.py`, reads the heatmap and numbers, and tells you what changed that you did not ask for. |
+| "Which format should I use?" / "Write an animated ad for a small speaker." | Picks one of three proven 30 s formats (cinematic scene, micro-drama Reel, animated story ad), says why, and writes the scene on its beat timing. |
+| "Make reference images for the two characters." | Writes one image prompt per character, creature or product (framing, background, light, the identifiers to keep) and the keep-line for each in the video prompt. Checks the images when you send them. |
+| "Make it look expensive." | Art-directs the stills: contrast against the set, what the light does, one palette with the product brightest, a named lens, fixed light, materials, and what to drop. Gives the build order and the consistency check. |
 | "Log 42 credits for attempt 2." / "What has this cost?" | Keeps a CSV ledger with `tally.py`: totals, credits per usable second, dollar total. |
 
 ## Install
@@ -120,6 +136,18 @@ the full list; trust your screen if it has changed):
 - Duration carries across tabs, and prices change. Read the quote on the
   Generate button before every click. The skill never quotes a price.
 
+## The references
+
+The skill reads these from `skills/shot-director/references/`:
+
+| File | What is in it |
+|---|---|
+| `kling4-higgsfield-rules.md` | interface facts, dialogue rules, prompt craft, money |
+| `scene-formats.md` | the three 30 s formats, beat timing, pitfalls, Edit video lessons |
+| `reference-sheets.md` | character, creature and product reference prompts, start and end frames, safety-filter wording |
+| `look-playbook.md` | art direction for stills, the do and drop lists, build order, consistency check |
+| `scene-template.md`, `plan-template.md` | the files the skill writes |
+
 ## The scripts
 
 All four have `--help`, take media paths as arguments, need no network
@@ -206,10 +234,21 @@ the examples are placeholders; log what your Generate button says.
 
 ## Examples
 
-- `examples/scene-friday/`: a worked dialogue scene (`scene.md`,
-  `scene.json`): "Friday", a 30 s 9:16 micro-drama in seven shots, two
-  original characters, six lines and a silent ring-box insert, with the
-  Kling 4.0 prompt that produced the clip tested below.
+One worked scene per format (`scene.md`, `scene.json`):
+
+- `examples/scene-friday/`: micro-drama Reel. "Friday", 30 s 9:16 in seven
+  shots, two original characters, six lines and a silent ring-box insert,
+  with the Kling 4.0 prompt that produced the clip tested below.
+- `examples/scene-viking/`: cinematic scene. "Edge of the Map", 30 s 16:9 in
+  seven shots: a narrator, two Vikings and a giant sea robot, with the three
+  reference image prompts.
+- `examples/scene-grandpa/`: animated story ad. "Grandpa's Radio", 30 s 16:9
+  in Frames mode with a start and an end frame, a made-up speaker brand, and
+  the Edit video prompt for the matte black client note (with the fix line
+  for the drift the first edit showed).
+
+Single shots and tests:
+
 - `examples/terracotta-speaker/`: a worked plan (`plan.md`, `plan.json`) for a
   fictional product: a small matte terracotta desk speaker shaped like a squat
   rounded block with one thin white light bar on the front, no logo. Client
@@ -230,7 +269,7 @@ keep it small), transcribed with faster-whisper `small` on a CPU:
 | "Friday" v1, 5 shots, last shot with both speakers | the garble caught | HALF: 22 s came at 23.25 s | HALF: 5 of 6; "'it' heard as 'a did'" (0.77) |
 | Viking scene, 5 shots, lightning in the last shot | rower line late in its shot, "we've found" | HIT: 4 of 4 within 0.2 s, lightning at 29.1 s ignored | HALF: the rower's line starts 4.2 s into its 6 s shot; the leader's line starts 1.1 s early, over the rower's close-up |
 
-With the same clips' ElevenLabs transcripts passed through `--transcript`, the
+With the same clips transcribed by a second speech-to-text service and passed through `--transcript`, the
 lines matched the same way, the v1 garble came out as "'it' heard as 'of
 did'", and the leader's "we've found" showed as "extra 'have'" (faster-whisper
 had heard "we found" and dropped the shouted "Row!"). SYNC and SAME are calls

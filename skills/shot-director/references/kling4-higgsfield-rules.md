@@ -54,6 +54,13 @@ disagrees with this file, trust the screen, tell the user, and update this file.
   brightness and colour of the room, the camera move and the timing".
 - The Edit tab has its own Duration control. Set it to the source length.
 - The edit's audio may be regenerated rather than copied.
+- **An edit can add objects and re-animate motion.** In a colour-change test
+  the recoloured product also appeared where it had not been yet (on a shelf
+  before it was unwrapped), and the characters' movements were played
+  differently. Put this first: "Do not add any object that is not in the
+  original video. <Where the target is absent> until <time>. Every movement,
+  pose, gesture and camera framing stays exactly as in the original video,
+  frame for frame; only <the change>." Details in `scene-formats.md`.
 - Test an edit on a short slice (about 10 s where the target is on screen the
   whole time) at 720p before paying for the full clip.
 
